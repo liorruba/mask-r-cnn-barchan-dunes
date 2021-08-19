@@ -85,7 +85,7 @@ with tf.device(DEVICE):
                               config=config)
 
 
-AEOLIAN_WEIGHTS_PATH = "/data/cees/liorr/mrcnn_weights/aeolian_016_20210125T2041/mask_rcnn_aeolian_016__0113.h5"
+AEOLIAN_WEIGHTS_PATH = "../mask_rcnn_aeolian_016__0113.h5"
 
 
 weights_path = AEOLIAN_WEIGHTS_PATH
