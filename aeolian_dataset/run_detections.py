@@ -54,9 +54,9 @@ class InferenceConfig(config.__class__):
 
 config = InferenceConfig()
 
-API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJja2NlMTFkMGVmbW1vMDczNXV2dndlcWZxIiwib3JnYW5pemF0aW9uSWQiOiJja2NlMTFjenlmbW1pMDczNTMycW43ZXlpIiwiYXBpS2V5SWQiOiJja2V5b29sbzI5MDhpMDcwOGZ6ZHU3d3lsIiwiaWF0IjoxNTk5ODU1NTQzLCJleHAiOjIyMzEwMDc1NDN9.qwaVnPCckrcFN6aBddSFN8PD9xVP2hKpTFr12U2TIW0"
+API_KEY = ""
 client = Client(API_KEY)
-proj = client.get_project('ckce2im26y3bv0749sq1k5xjw')
+proj = client.get_project(")
 
 print("Exporting label data to json...")
 export_url = proj.export_labels()
