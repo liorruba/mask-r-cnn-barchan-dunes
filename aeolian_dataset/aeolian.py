@@ -315,19 +315,6 @@ class AeolianDataset(utils.Dataset):
 
         # Download instance mask, and place in a 3D numpy array with same shape as image
         for idx, mask_path in enumerate(image_info["mask_path"]):
-            # Sleep to not exceed labelbox's API QPS limit
-            # time.sleep(3)
-
-            # response = requests.get(url) ## RETRIES??
-
-            # if not response.ok:
-            #     print("WARNING: Error fetching image from Labelbox.")
-            #     print(url)
-            #     print(response)
-            #
-            #     continue
-
-            # mask = np.asarray(bytearray(response.content), dtype="uint8")
             # Load image
             mask = skimage.io.imread(mask_path)
             # mask = cv2.imdecode(mask, cv2.IMREAD_GRAYSCALE)
@@ -419,30 +406,6 @@ def get_data_from_labelbox(dataset_dir):
             print("Writing data to file...")
             json.dump(data, f)
             print("Done.")
-
-def write_config_to_logs_dir(aeolian_config, logs_dir):
-    '''
-    Write the configuation file to the output dir, so that the experiment
-    information could be accessed later
-    '''
-    import json
-
-    class NumpyEncoder(json.JSONEncoder):
-        def default(self, obj):
-            if isinstance(obj, np.ndarray):
-                return obj.tolist()
-            return json.JSONEncoder.default(self, obj)
-
-    if not os.path.exists(os.path.join(logs_dir, 'config.json')):
-        # Wait for logs dir
-        while not os.path.exists(logs_dir):
-            print('logs dir ' + logs_dir + ' de')
-            time.sleep(0.5)
-
-        with open(os.path.join(logs_dir, 'config.json'), 'w') as file:
-            json.dump(AeolianConfig.__dict__.copy(), file, cls = NumpyEncoder)
-    else:
-        print("Configuation file already exists.")
 
 def train(model):
     """Train the model."""
